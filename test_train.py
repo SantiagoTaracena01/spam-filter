@@ -21,7 +21,8 @@ class TestTrain:
             self.label, self.text = line.strip().split("\t")
             # Limpiar el texto eliminando caracteres especiales y convirtiéndolo a minúsculas
             self.text = re.sub(r"[^\w\s]", "", self.text.lower())
-            self.messages.append((self.label, self.text))
+            if len(self.text) > 2:
+                self.messages.append((self.label, self.text))
         self.train_test()
             
     def train_test(self):
