@@ -16,7 +16,7 @@ prediction = classifier.classify(sample)
 
 print("\nTraining")
 print(prediction[0])
-print("Probabilidad de spam: ",prediction[1])
+print("Probabilidad de spam: ", prediction[1])
 print("Probabilidad de ham: ", prediction[2])
 
 # Entrenar el modelo con los datos de entrenamiento
@@ -27,6 +27,5 @@ prediction = classifier.classify(sample)
 
 print("\nTesting")
 print(prediction[0])
-print("Probabilidad de spam: ",prediction[1])
+print("Probabilidad de spam: ", prediction[1])
 print("Probabilidad de ham: ", prediction[2])
-

@@ -1,13 +1,18 @@
 import re
 
-class LaplaceClassifier:
-    
+# Definición de la clase LaplaceClassifier.
+class LaplaceClassifier(object):
+
+    # Método constructor de la clase LaplaceClassifier.
     def __init__(self):
+
+        # Declaración de propiedades iniciales.
         self.spam_prob = 0
         self.ham_prob = 0
         self.spam_words = {}
         self.ham_words = {}
 
+    # Método para entrenar el modelo.
     def train(self, train_path):
         # Leer el archivo de entrenamiento
         with open(train_path, "r") as f:
@@ -49,6 +54,6 @@ class LaplaceClassifier:
 
         # Clasificar el mensaje según la probabilidad resultante
         if p_spam >= p_ham:
-            return "spam",p_spam,p_ham
+            return "spam", p_spam, p_ham
         else:
-            return "ham",p_spam,p_ham
+            return "ham", p_spam, p_ham
