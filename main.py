@@ -9,23 +9,25 @@ classifier = LaplaceClassifier()
 # Entrenar el modelo con los datos de entrenamiento
 classifier.train("train.txt")
 
-sample = "este es un mensaje de prueba"
+results = {}
 
-# Obtener la predicción para una muestra
-prediction = classifier.classify(sample)
+with open("test.txt", "r") as f:
+    test_messages = f.readlines()
 
-print("\nTraining")
-print(prediction[0])
-print("Probabilidad de spam: ", prediction[1])
-print("Probabilidad de ham: ", prediction[2])
+for message in test_messages:
+    label, text = message.strip().split("\t")
+    result = classifier.classify(text)
+    results[text] = (label, result[0])
 
-# Entrenar el modelo con los datos de entrenamiento
-classifier.train("test.txt")
+print(results)
 
-# Obtener la predicción para una muestra
-prediction = classifier.classify(sample)
+spam_correct = len([1 for text in results if results[text] == ("spam", "spam")])
+spam_incorrect = len([1 for text in results if results[text] == ("spam", "ham")])
+ham_correct = len([1 for text in results if results[text] == ("ham", "ham")])
+ham_incorrect = len([1 for text in results if results[text] == ("ham", "spam")])
 
-print("\nTesting")
-print(prediction[0])
-print("Probabilidad de spam: ", prediction[1])
-print("Probabilidad de ham: ", prediction[2])
+print([spam_correct, spam_incorrect])
+print([ham_incorrect, ham_correct])
+
+print(len(results))
+print(sum([spam_correct, spam_incorrect]) + sum([ham_incorrect, ham_correct]))
