@@ -21,10 +21,17 @@ for message in test_messages:
 
 print(results)
 
-spam_correct = len([1 for text in results if results[text] == ("spam", "spam")])
-spam_incorrect = len([1 for text in results if results[text] == ("spam", "ham")])
-ham_correct = len([1 for text in results if results[text] == ("ham", "ham")])
-ham_incorrect = len([1 for text in results if results[text] == ("ham", "spam")])
+# Función para contar los valores correctos/incorrectos
+def cI_values(tuple):
+    return len([1 for text in results if results[text] == tuple])
+
+
+# Definición de variables
+spam_correct = cI_values(("spam", "spam"))
+spam_incorrect = cI_values(("spam", "ham"))
+ham_correct = cI_values(("ham", "ham"))
+ham_incorrect = cI_values(("ham", "spam"))
+
 
 print([spam_correct, spam_incorrect])
 print([ham_incorrect, ham_correct])
